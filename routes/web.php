@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Expr\FuncCall;
@@ -13,19 +14,33 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-
-Route::get('/home',function(){
-    return view('home');
-})->middleware('auth')->name('home');
-
-
-
 Route::get('/login', [AuthController::class, 'showLoginForm'])
 ->name('login')
 ->middleware('guest');
 
 
-Route::post('/login', [AuthController::class, 'login'])->name('login.process');
+Route::post('/login', [AuthController::class, 'login'])->name('login.process')
+->middleware('guest');
+
+Route::middleware(['auth'])->group(function(){
+    Route::get('/home', function(){
+        return view('home');
+    })->name('home');
+
+    Route::resource('contacts',ContactController::class);
+
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+});
 
 
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
+
+
+
+
+
+
+
+

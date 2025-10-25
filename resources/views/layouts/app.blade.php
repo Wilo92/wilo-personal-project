@@ -11,8 +11,22 @@
 
 
     <style>
+        .navbar .dropdown-toggle::after{
+            display: none;
+        }
+
+        .navbar img{
+            border: 2px solid #004AAD;
+        }
+
+        .dropdown-menu{
+            border-radius:10px;
+            overflow: hidden;
+        }
+
+
         body {
-            padding-top: 70px;
+
             background-color: #f8f9fa;
             font-family: 'Poppins', sans-serif;
         }
@@ -24,7 +38,7 @@
     @include('layouts.navbar')
 
     {{-- Contentido dimanico --}}
-    <main class="container-fluid mt-04">
+    <main class="p-0">
         @yield('content')
     </main>
 

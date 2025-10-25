@@ -9,7 +9,7 @@
 
     <style>
         body {
-            background: url('{{ asset('images/images.jpeg') }}') no-repeat center center fixed;
+            background: url('{{ asset('images/fondoLogin.png') }}') no-repeat center center fixed;
             background-size: cover;
             min-height: 100vh; /* CORRECCIÓN */
             font-family: Arial, sans-serif;
@@ -66,24 +66,24 @@
         <!-- Card de login -->
         <div class="card shadow-lg p-4 rounded-4" style="width:24rem; background-color: rgba(255,255,255,0.95);">
             <div class="text-center mb-3">
-                <img src="{{ asset('images/logo.jpeg') }}" alt="Logo" class="img-fluid" style="max-height: 120px;">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo" class="img-fluid" style="max-height: 120px;">
             </div>
 
-            <h3 class="text-center mb-4 fw-bold text-uppercase text-primary">Iniciar Sesión</h3>
+            <h3 class="text-center mb-4 fw-bold text-uppercase text-primary">Login</h3>
 
             <form method="POST" action="{{ route('login.process') }}">
                 @csrf
 
                 <div class="mb-3">
-                    <label class="form-label" for="email">Correo electrónico</label>
+                    <label class="form-label" for="email">Email</label>
                     <input class="form-control" type="email" id="email" name="email"
-                        value="{{ old('email') }}" required autofocus placeholder="ejemplo@correo.com">
+                        value="{{ old('email') }}" required autofocus placeholder="exemple@email.com">
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label" for="password">Contraseña</label>
+                    <label class="form-label" for="password">Password</label>
                     <input class="form-control" type="password" id="password" name="password"
-                        required autocomplete="current-password" placeholder="Tu contraseña">
+                        required autocomplete="current-password" placeholder="your password">
                 </div>
 
                 <button class="btn btn-primary w-100 fw-semibold py-2" type="submit"
@@ -92,7 +92,7 @@
                 </button>
 
                 <div class="text-center mt-3">
-                    <a href="#">Recuperar Contraseña</a>
+                    <a href="#">Register</a>
                 </div>
             </form>
         </div>
@@ -133,11 +133,11 @@
 
             if (!box) return;
 
-            // Si la caja contiene texto (errores), mostrarla con animación
+            
             const hasErrors = box.textContent && box.textContent.trim().length > 0;
 
             if (hasErrors) {
-                // forzar reflow antes de añadir clase para animar
+                
                 void box.offsetWidth;
                 box.classList.add('show');
             }
@@ -146,7 +146,7 @@
 
     <footer class="text-center text-light mt-4 py-3"
         style="background-color: rgba(0, 0, 0, 0.5); position: fixed; bottom: 0; width: 100%;">
-        <p class="mb-0" style="font-size: 0.9rem;">© {{ date('Y') }} Sistema SSO — Desarrollado por <strong>Wilmer Restrepo</strong></p>
+        <p class="mb-0" style="font-size: 0.9rem;">© {{ date('Y') }} Wilo Planner — Created by <strong>Wilmer Restrepo (Wilo)</strong></p>
     </footer>
 </body>
 </html>
