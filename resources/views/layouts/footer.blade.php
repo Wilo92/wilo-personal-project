@@ -1,5 +1,5 @@
 <footer class="text-light py-4 mt-5" style="background-color: #004AAD;">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row align-items-center mb-3">
 
             <div class="col-md-4 text-start">

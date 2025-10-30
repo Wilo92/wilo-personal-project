@@ -11,23 +11,24 @@
 
 
     <style>
-        .navbar .dropdown-toggle::after{
+        .navbar .dropdown-toggle::after {
             display: none;
         }
 
-        .navbar img{
+        .navbar img {
             border: 2px solid #004AAD;
         }
 
-        .dropdown-menu{
-            border-radius:10px;
+        .dropdown-menu {
+            border-radius: 10px;
             overflow: hidden;
         }
 
 
         body {
-
-            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+             background-color: #f8f9fa;
             font-family: 'Poppins', sans-serif;
         }
     </style>

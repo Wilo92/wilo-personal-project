@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark shadow-sm sticky-top m-0 "
     style="background: linear-gradient(90deg,#004AAD,#FF7C00);">
-    <div class="container px-4">
+    <div class="container-fluid px-4">
         <a class="navbar-brand fw-bold text-uppercase text-warning" href="#">
             <i class="bi bi-calendar-check"></i> Wilo <span class="text-light">Planner</span>
         </a>
@@ -13,10 +13,10 @@
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Directory</a>
+                    <a class="nav-link" href="{{route('contacts.index')}}">Directory</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Tasks</a>

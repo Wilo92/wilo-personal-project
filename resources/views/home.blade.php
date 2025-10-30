@@ -7,7 +7,7 @@
         <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="/images/banner1.png" class="d-block w-100 hero-img" alt="Imagen 1">
+                    <img src="/images/eo.png" class="d-block w-100 hero-img" alt="Imagen 1">
                 </div>
                 <div class="carousel-item">
                     <img src="/images/banner2.png" class="d-block w-100 hero-img" alt="Imagen 2">
@@ -33,6 +33,15 @@
 
     </section>
     <style>
+
+        #heroCarousel{
+            position: absolute;
+            top: 0%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
         .hero {
             position: relative;
             width: 100vw;
@@ -40,7 +49,7 @@
             right: 50%;
             margin-left: -50vw;
             margin-right: -50vw;
-            height: 85vh;
+            height: 70vh;
             overflow: hidden;
             color: white;
         }
@@ -54,7 +63,7 @@
 
         .hero .hero-img {
             width: 100%;
-            height: 85vh;
+            height: 100%;
             object-fit: cover;
         }
 
