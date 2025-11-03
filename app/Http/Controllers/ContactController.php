@@ -111,4 +111,19 @@ class ContactController extends Controller
         return redirect()->route('contacts.index')
             ->with('succes', 'bien bien');
     }
+
+    public function destroy(string $id)
+    {
+        $contact = Contact::findOrFail($id);
+
+        // Elimina la foto del disco si existe
+        if ($contact->photo) {
+            Storage::disk('public')->delete($contact->photo);
+        }
+
+        $contact->delete();
+
+        return redirect()->route('contacts.index')
+            ->with('success', 'Contacto eliminado correctamente.');
+    }
 }

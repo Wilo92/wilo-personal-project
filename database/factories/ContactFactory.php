@@ -24,6 +24,10 @@ class ContactFactory extends Factory
             
            
             'email' => $this->faker->unique()->safeEmail(), 
+
+            'birthday' => $this->faker->dateTimeBetween('-70 years', '-18 years')->format('Y-m-d'),
+
+            'photo' => null,
         ];
     }
 }
