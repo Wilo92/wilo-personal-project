@@ -22,7 +22,7 @@
                        El método es POST para simular PUT.
                     --}}
                         <form action="{{ route('contacts.update', $contact->id) }}" method="POST"
-                            enctype="multipart/form-data">
+                            enctype="multipart/form-data" id="contact-form">
 
                             @csrf
 
@@ -117,26 +117,69 @@
     </div>
 @endsection
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@23.0.4/build/css/intlTelInput.min.css">
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@23.0.4/build/js/intlTelInput.min.js"></script>
 
-<script>
-    function previewImage(event) {
-        const file = event.target.files[0];
-        if (!file) return;
+@section('scripts')
+    <script>
+        function previewImage(event) {
+            const file = event.target.files[0];
+            if (!file) return;
 
-        const reader = new FileReader();
+            const reader = new FileReader();
 
-        reader.onload = function(e) {
-            const output = document.getElementById('image-preview');
-            output.src = e.target.result;
-            output.style.display = 'block'; // Hacer visible la imagen de previsualización
+            reader.onload = function(e) {
+                const output = document.getElementById('image-preview');
+                output.src = e.target.result;
+                output.style.display = 'block'; // Hacer visible la imagen de previsualización
 
-            // Opcional: Desmarcar el checkbox de eliminar si el usuario sube una nueva foto
-            const removeCheckbox = document.getElementById('remove_photo');
-            if (removeCheckbox) {
-                removeCheckbox.checked = false;
+                // Opcional: Desmarcar el checkbox de eliminar si el usuario sube una nueva foto
+                const removeCheckbox = document.getElementById('remove_photo');
+                if (removeCheckbox) {
+                    removeCheckbox.checked = false;
+                }
             }
+
+            reader.readAsDataURL(file);
         }
 
-        reader.readAsDataURL(file);
-    }
-</script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const input = document.querySelector("#phone");
+            const form = document.getElementById("contact-form");
+
+            // 1. Inicializar la librería con la configuración
+            const iti = window.intlTelInput(input, {
+                // El valor inicial del input ya está cargado por Laravel Blade (old('phone', $contact->phone))
+                utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@23.0.4/build/js/utils.js",
+                separateDialCode: true,
+                initialCountry: "auto",
+                geoIpLookup: callback => {
+                    // Intento de geolocalización
+                    fetch('https://ipinfo.io/json')
+                        .then(res => res.json())
+                        .then(data => callback(data.country))
+                        .catch(() => {
+                            callback("us"); // Fallback
+                        });
+                },
+            });
+
+            // 2. Antes de enviar, asegurar que el input tenga el número completo
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    const fullNumber = iti.getNumber();
+                    const dialCode = iti.getSelectedCountryData().dialCode;
+
+                    if (iti.isValidNumber() && dialCode) {
+                        const nationalNumber = fullNumber.replace(`+${dialCode}`, '').trim();
+                        const formattedNumber = `(+${dialCode}) ${nationalNumber}`;
+                        input.value = formattedNumber;
+                    } else {
+                        input.value = fullNumber;
+                    }
+
+                });
+            }
+        });
+    </script>
+@endsection

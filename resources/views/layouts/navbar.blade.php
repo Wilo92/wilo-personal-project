@@ -25,7 +25,7 @@
                     <a class="nav-link" href="#">Instructions</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" href="https://github.com/Wilo92">Contact</a>
                 </li>
             </ul>
 
