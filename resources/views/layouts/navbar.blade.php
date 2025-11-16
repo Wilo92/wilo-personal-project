@@ -19,13 +19,13 @@
                     <a class="nav-link" href="{{route('contacts.index')}}">Directory</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Tasks</a>
+                    <a class="nav-link" href="#">Forum</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Instructions</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://github.com/Wilo92">Contact</a>
+                    <a class="nav-link" href="https://github.com/Wilo92" target="_blank" rel="noopener noreferrer">Contact</a>
                 </li>
             </ul>
 

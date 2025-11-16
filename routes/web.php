@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Expr\FuncCall;
@@ -21,6 +22,14 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])
 
 Route::post('/login', [AuthController::class, 'login'])->name('login.process')
 ->middleware('guest');
+
+
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])
+->name('register')
+->middleware('guest');
+
+Route::post('/register', [RegisterController::class, 'register'])->name('register.process')
+->middleware('guest');  
 
 Route::middleware(['auth'])->group(function(){
     Route::get('/home', function(){

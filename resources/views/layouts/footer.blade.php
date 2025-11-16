@@ -18,10 +18,10 @@
             <div class="col-md-4 text-end">
                 <h6 class="fw-bold mb-2 small text-uppercase">Follow me</h6>
                 <div class="d-flex justify-content-end gap-3">
-                    <a href="#" class="text-light"><i class="bi bi-facebook fs-4"></i></a>
-                    <a href="#" class="text-light"><i class="bi bi-github fs-4"></i></a>
-                    <a href="#" class="text-light"><i class="bi bi-linkedin fs-4"></i></a>
-                    <a href="#" class="text-light"><i class="bi bi-file-person-fill fs-4"></i></a>
+                    <a href="https://www.facebook.com/will.restrepo.9" class="text-light" target="blank"><i class="bi bi-facebook fs-4"></i></a>
+                    <a href="https://github.com/Wilo92" class="text-light" target="blank"><i class="bi bi-github fs-4"></i></a>
+                    <a href="https://www.linkedin.com/in/wilmer-restrepo-830544242/" class="text-light" target="blanck"><i class="bi bi-linkedin fs-4"></i></a>
+                    <a href="https://wilo92.github.io/myhdv/" class="text-light" target="blanck"><i class="bi bi-file-person-fill fs-4"></i></a>
                 </div>
             </div>
         </div>

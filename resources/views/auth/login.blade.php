@@ -11,7 +11,7 @@
         body {
             background: url('{{ asset('images/fondoLogin.png') }}') no-repeat center center fixed;
             background-size: cover;
-            min-height: 100vh; /* CORRECCIÓN */
+            min-height: 100vh;
             font-family: Arial, sans-serif;
             margin: 0;
         }
@@ -58,6 +58,44 @@
         .login-wrapper {
             min-height: 100vh;
         }
+
+        /* 1. NUEVOS ESTILOS PARA EL TOOLTIP (POP-UP) */
+        /* Contenedor que permite posicionar el tooltip relativo al input */
+        .password-input-wrapper {
+            position: relative; 
+            z-index: 10;
+        }
+
+        /* Estilo y posición del Tooltip */
+        .tooltip-security {
+            position: absolute; 
+            /* Posicionamiento: lo colocamos justo encima del campo de contraseña */
+            bottom: 100%; 
+            left: 0; 
+            margin-bottom: 10px; /* Separación del input */
+            
+            padding: 10px 15px;
+            background-color: #e5f6ff; /* Fondo azul claro, acorde al branding */
+            border: 1px solid #007bff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 20; /* Asegura que esté sobre otros elementos */
+            width: 100%; /* Ocupa todo el ancho del contenedor */
+            max-width: 380px; /* Limita el ancho máximo para evitar desbordamiento */
+            font-size: 0.85rem;
+            color: #004085;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            opacity: 0; /* Oculto por defecto */
+            transform: translateY(5px); /* Un poco desplazado hacia abajo */
+            pointer-events: none; /* Ignora clics cuando está oculto */
+        }
+        
+        /* Estilo para mostrar el Tooltip */
+        .tooltip-security.show-tooltip {
+            opacity: 1;
+            transform: translateY(0); /* Vuelve a la posición normal (aparece desde abajo) */
+            pointer-events: auto;
+        }
     </style>
 </head>
 
@@ -75,16 +113,32 @@
                 @csrf
 
                 <div class="mb-3">
-                    <label class="form-label" for="email">Email</label>
+                    <label class="form-label" for="email">correo</label>
                     <input class="form-control" type="email" id="email" name="email"
-                        value="{{ old('email') }}" required autofocus placeholder="exemple@email.com">
+                        value="{{ old('email') }}" required autofocus placeholder="ejemplo@email.com">
                 </div>
 
-                <div class="mb-3">
-                    <label class="form-label" for="password">Password</label>
+                <!-- 2. CONTENEDOR DE CONTRASEÑA Y TOOLTIP -->
+                <div class="mb-3 password-input-wrapper"> 
+                    <label class="form-label" for="password">Contraseña</label>
+                    
                     <input class="form-control" type="password" id="password" name="password"
-                        required autocomplete="current-password" placeholder="your password">
+                        required autocomplete="current-password" placeholder="Ingresa tu contraseña"
+                        
+                        {{-- 3. LLAMADAS JAVASCRIPT: Muestra el tooltip al enfocar --}}
+                        onfocus="document.getElementById('security-tooltip').classList.add('show-tooltip')"
+                        {{-- Oculta el tooltip al desenfocar (o pasar el cursor fuera) --}}
+                        onblur="document.getElementById('security-tooltip').classList.remove('show-tooltip')"
+                    >
+                    
+                    <!-- EL TOOLTIP (POP-UP) -->
+                    <div id="security-tooltip" class="tooltip-security">
+                        <p class="mb-0 fw-bold">Aviso de Bloqueo de Cuenta</p>
+                        <hr class="my-1 border-primary opacity-25">
+                        <p class="mb-0">Después de 3 intentos fallidos, tu cuenta se bloqueará por 5 minutos por seguridad</p>
+                    </div>
                 </div>
+                <!-- FIN DEL CONTENEDOR DE CONTRASEÑA Y TOOLTIP -->
 
                 <button class="btn btn-primary w-100 fw-semibold py-2" type="submit"
                     style="background:linear-gradient(90deg,#007bff, #00b4d8);border:none;">
@@ -92,7 +146,7 @@
                 </button>
 
                 <div class="text-center mt-3">
-                    <a href="#">Register</a>
+                    <a href="{{route('register')}}">Registrarse</a>
                 </div>
             </form>
         </div>
@@ -146,7 +200,7 @@
 
     <footer class="text-center text-light mt-4 py-3"
         style="background-color: rgba(0, 0, 0, 0.5); position: fixed; bottom: 0; width: 100%;">
-        <p class="mb-0" style="font-size: 0.9rem;">© {{ date('Y') }} Wilo Planner — Created by <strong>Wilmer Restrepo (Wilo)</strong></p>
+        <p class="mb-0" style="font-size: 0.9rem;">© {{ date('Y') }} Wilo Planner — Creado por <strong>Wilmer Restrepo (Wilo)</strong></p>
     </footer>
 </body>
 </html>
