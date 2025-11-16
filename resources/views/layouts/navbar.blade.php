@@ -39,13 +39,13 @@
                             class="rounded-circle me-2"
                             style="object-fit: cover; border: 2px solid rgba(255,255,255,0.2);">
 
-                        <span class="fw-semibold">Wilo</span>
+                        <span class="fw-semibold">{{Auth::user()->name}}</span>
                     </a>
 
                     <ul class="dropdown-menu dropdown-menu-end text-small shadow" aria-labelledby="userMenu">
                         <li class="dropdown-item-text px-3">
-                            <strong>Wilmer Restrepo</strong><br>
-                            <small class="text-muted">wilmer.restrepo@hotmail.com</small>
+                            <strong>{{Auth::user()->name}}</strong><br>
+                            <small class="text-muted">{{Auth::user()->email}}</small>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
