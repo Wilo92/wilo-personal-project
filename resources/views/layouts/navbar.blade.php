@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark shadow-sm sticky-top m-0 "
     style="background: linear-gradient(90deg,#004AAD,#FF7C00);">
     <div class="container-fluid px-4">
-        <a class="navbar-brand fw-bold text-uppercase text-warning" href="#">
-            <i class="bi bi-calendar-check"></i> Wilo <span class="text-light">Planner</span>
+        <a class="navbar-brand fw-bold text-uppercase text-warning" href="{{route('home')}}">
+            <i class="bi bi-calendar-check"></i>Wilo<span class="text-light">Link</span>
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
@@ -13,19 +13,19 @@
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
+                    <a class="nav-link active" aria-current="page" href="{{route('home')}}">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('contacts.index')}}">Directory</a>
+                    <a class="nav-link" href="{{route('contacts.index')}}">Directorio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Forum</a>
+                    <a class="nav-link" href="#">Foro</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Instructions</a>
+                    <a class="nav-link" href="#">Readme</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://github.com/Wilo92" target="_blank" rel="noopener noreferrer">Contact</a>
+                    <a class="nav-link" href="https://github.com/Wilo92" target="_blank" rel="noopener noreferrer">Contacto</a>
                 </li>
             </ul>
 

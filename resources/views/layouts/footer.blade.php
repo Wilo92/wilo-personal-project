@@ -5,18 +5,18 @@
             <div class="col-md-4 text-start">
                 <a href="#" class="d-inline-flex align-items-center text-decoration-none text-light">
                     <img src="{{ asset('images/logo.png') }}" alt="" style="height: 40px; margin-right: 10px;">
-                    <span class="fs-5 fw-bold">Wilo Planner</span>
+                    <span class="fs-5 fw-bold">WiloLink</span>
                 </a>
             </div>
 
             <div class="col-md-4 text-center">
                 <p class="mb-0 fs-6 fst-italic">
-                    "Your personal assistant for contacts and tasks."
+                    "Gestiona, Conecta, Proyecta."
                 </p>
             </div>
 
             <div class="col-md-4 text-end">
-                <h6 class="fw-bold mb-2 small text-uppercase">Follow me</h6>
+                <h6 class="fw-bold mb-2 small text-uppercase">Acerca de mi</h6>
                 <div class="d-flex justify-content-end gap-3">
                     <a href="https://www.facebook.com/will.restrepo.9" class="text-light" target="blank"><i class="bi bi-facebook fs-4"></i></a>
                     <a href="https://github.com/Wilo92" class="text-light" target="blank"><i class="bi bi-github fs-4"></i></a>
@@ -31,7 +31,7 @@
         <div class="row">
             <div class="col text-center">
                 <p class="mb-0 small">
-                    &copy; {{ date('Y') }} WILO PLANNER. Created by <strong>Wilmer Restrepo (Wilo)</strong>
+                    &copy; {{ date('Y') }} WiloLink. Creado por <strong>Wilmer Restrepo (Wilo)</strong>
                 </p>
             </div>
         </div>
