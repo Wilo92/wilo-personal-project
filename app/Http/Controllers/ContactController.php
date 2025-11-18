@@ -26,20 +26,34 @@ class ContactController extends Controller
         return view('contacts.create');
     }
 
+
+    protected function formatAndCleanPhone(string $phone)
+    {
+        $cleanedPhone = preg_replace('/[^\d+]/', '', $phone);
+        return $cleanedPhone;
+    }
+
+
+
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
+        // El formato que la librería de teléfono envía es generalmente: +XX NNNNN... (con espacios, sin paréntesis)
+
         $request->validate([
             'name' => 'required|string|max:100',
-            'phone' => 'required|string|max:20',
+            // NUEVO REGEX: Permite + seguido de dígitos y espacios, que coincide con el input real.
+            'phone' => 'required|string|max:20|regex:/^\+\d+[\d\s]*$/|unique:contacts',
             'email' => 'required|email|unique:contacts',
             'birthday' => 'nullable|date',
             'photo' => 'nullable|image|max:2048',
         ]);
 
         $data = $request->all();
+        $data['phone'] = $this->formatAndCleanPhone($request->input('phone'));
         if ($request->hasFile('photo')) {
             $photoPath = $request->file('photo')->store('photos', 'public');
             $data['photo'] = $photoPath;
@@ -47,7 +61,7 @@ class ContactController extends Controller
 
         Contact::create($data);
         return redirect()->route('contacts.index')
-            ->with('success', 'contact create');
+            ->with('success', 'contacto creado correctamente.');
     }
 
     /**
@@ -73,21 +87,24 @@ class ContactController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    // Método Update CORREGIDO (solo mostraré la parte modificada)
-
-
-
-    // ...
-
     public function update(Request $request, string $id)
     {
-        // ... (Validación es correcta) ...
+
+        $request->validate([
+            'name' => 'required|string|max:100',
+            // REGEX ajustado y UNIQUE ignorando el ID actual
+            'phone' => 'required|string|max:20|regex:/^\+\d+[\d\s]*$/|unique:contacts,phone,' . $id,
+            // UNIQUE del email también ignora el ID actual
+            'email' => 'required|email|unique:contacts,email,' . $id,
+            'birthday' => 'nullable|date',
+            'photo' => 'nullable|image|max:2048',
+        ]);
 
         $contact = Contact::findOrFail($id);
 
-        // TOMA todos los datos del request, EXCEPTO 'photo' para evitar que se pase 
-        // un campo vacío si no se subió un archivo.
+        // TOMA todos los datos del request, EXCEPTO 'photo'.
         $data = $request->except(['photo']);
+        $data['phone'] = $this->formatAndCleanPhone($request->input('phone'));
 
         // 1. Manejo de la foto
         if ($request->hasFile('photo')) {
@@ -99,17 +116,13 @@ class ContactController extends Controller
 
             // 3. Guarda la nueva foto y la asigna a $data
             $photoPath = $request->file('photo')->store('photos', 'public');
-            $data['photo'] = $photoPath; // <--- Solo se asigna la ruta si se subió una nueva
+            $data['photo'] = $photoPath;
         }
-        // 4. Si el usuario subió el formulario sin archivo, $data NO contiene 'photo', 
-        //    por lo que no se actualiza la ruta existente. 
-        //    Si quieres permitir al usuario eliminar la foto sin subir una nueva, 
-        //    necesitas un checkbox en la vista (ver nota abajo).
 
         $contact->update($data);
 
         return redirect()->route('contacts.index')
-            ->with('succes', 'bien bien');
+            ->with('succes', 'Contacto actualizado correctamente.');
     }
 
     public function destroy(string $id)
